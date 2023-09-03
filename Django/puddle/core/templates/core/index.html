@@ -5,12 +5,15 @@ Welcome
 {%endblock%}
 
 {%block content%}
+<style>
+    
+</style>
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
     <h2 class='mb-12 text-2xl text-center'>Newest Items </h2>
 
     <div class='grid grid-cols-6 gap-4' >
         {% for item in items%}
-        <div>
+        <div >
             
             <a href="{% url 'item:detail' item.id %}">
 
@@ -21,8 +24,8 @@ Welcome
                
                     {% endif %}
                  </div>
-                <div class='p-6 bg-white rounded-b-xl'>
-                    <h2 class='text-2xl'>{{item.name}}</h2>
+                <div class='p-7 bg-white rounded-b-xl'>
+                    <h3>{{item.name}}</h3>
                     <p class='text-gray-500'>Price:{{item.price}}</p>
                 </div>
 
