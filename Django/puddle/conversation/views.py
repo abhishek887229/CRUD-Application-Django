@@ -43,7 +43,7 @@ def new_conversation(request,item_pk):
 
 @login_required
 def inbox(request):
-    conversations=Conversation.objects.filter(members__id=int(request.user.id))
+    conversations=Conversation.objects.filter(members__in=[request.user.id])
 
     return render(request,'conversation/inbox.html',{
         'conversations':conversations
@@ -52,7 +52,7 @@ def inbox(request):
   
 @login_required
 def detail(request,pk):
-    conversation=Conversation.objects.filter(members__id=int(request.user.id).get(pk=pk))
-    return render(request,'conversation/dinbox_msg.html',{
+    conversation=Conversation.objects.filter(members__in=[request.user.id]).get(pk=pk)
+    return render(request,'conversation/inbox_msg.html',{
         'conversation':conversation
     })
