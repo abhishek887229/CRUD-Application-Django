@@ -8,6 +8,9 @@ app_name='core'
 urlpatterns = [
     path('',views.index,name='index'),
     path('contact/',views.contact,name='contact'),
+    path('about/',views.about,name='about'),
+    path('privacy/',views.privacy,name='privacy'),
     path('Signup/',views.signup,name='signup'),
+    path('',views.logout_user,name='log_out'),
     path('login/',auth_views.LoginView.as_view(template_name='core/login.html',authentication_form=LoginForm),name='login'),
 ]
