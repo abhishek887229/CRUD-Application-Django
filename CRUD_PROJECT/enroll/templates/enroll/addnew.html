@@ -1,0 +1,73 @@
+{% extends "enroll/base.html" %}
+
+{% block title %}New {% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <h1 class="text-white"><u>Add New User</u></h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <input type="submit" class="btn btn-success" value="Add">
+            </form>
+        </div>
+        <div class="col-sm-8">
+            <h4 class="text-white">Show Student's Info</h4>
+            {% if user_s %}
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Pincode</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for st in user_s %}
+                    <tr>
+                        <th scope="row">{{ st.id }}</th>
+                        <td>{{ st.name }}</td>
+                        <td>{{ st.email }}</td>
+                        <td>{{ st.phone }}</td>
+                        <td>{{ st.Age }}</td>
+                        <td>{{ st.pincode }}</td>
+                        <td>{{ st.Address }}</td>
+                        <td>
+                            <a href="{% url 'update_data' st.id %}" class="btn btn-success btn-sm">Edit</a>
+                            <form action="{% url 'delete_data' st.id %}" method="POST" class="d-inline">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="alert alert-danger text-center">No Data available please! add data</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom CSS for the template */
+    body {
+        background-color: #000;
+    }
+
+    .text-white {
+        color: #fff;
+    }
+
+    /* Add any additional styling or animations here */
+</style>
+
+{% endblock content %}

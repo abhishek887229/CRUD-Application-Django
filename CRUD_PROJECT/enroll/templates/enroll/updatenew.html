@@ -1,0 +1,52 @@
+{% extends "enroll/base.html" %}
+
+{% block title %}Update Page{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Update Contact</h4>
+                </div>
+                <div class="card-body" style="background-color:black;">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-danger update-btn btn-sm">Update</button>
+                            <a href="{% url 'add_show' %}" class="btn btn-success btn-sm">Back to Home</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+<style>
+    /* Custom CSS for animations and styling */
+    .update-btn {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .update-btn:hover {
+        transform: scale(1.05);
+    }
+
+    .card {
+        background-color: #333;
+    }
+
+    .card-header {
+        background-color: #28a745;
+        border-bottom: none;
+    }
+
+    .card-body {
+        background-color: #222;
+        color: white;
+    }
+</style>
